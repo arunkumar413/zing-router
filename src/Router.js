@@ -5,6 +5,14 @@ import { Test } from "./Test";
 
 export function Router(props) {
   const [currComponent, setCurrentComponent] = useState("");
+  const [currPath, setCurrPath] = useState("");
+
+  const routerConfig = {
+    "/about": <About />,
+    "/contact": <Contact />,
+    "/test": <Test />,
+  };
+
   useEffect(function () {
     let allLinkElements = document.querySelectorAll(".customLink");
     allLinkElements.forEach(function (item) {
@@ -15,13 +23,8 @@ export function Router(props) {
         let url = new URL(link);
         let path = url.pathname;
 
-        let routerConfig = {
-          "/about": <About />,
-          "/contact": <Contact />,
-          "/test": <Test />
-        };
-        let currComponent = routerConfig[path];
-        setCurrentComponent(currComponent);
+        // let currComponent = routerConfig[path];
+        setCurrPath(path);
       });
     });
   });
@@ -30,7 +33,7 @@ export function Router(props) {
     <div>
       {props.children}
 
-      {currComponent}
+      {routerConfig[currPath]}
     </div>
   );
 }
