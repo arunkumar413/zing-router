@@ -1,2 +1,2 @@
 # zing-router
-Created with CodeSandbox
+A simple client side router for react apps.
