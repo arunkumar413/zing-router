@@ -14,11 +14,12 @@ export function Router(props) {
   };
 
   useEffect(function () {
+    console.log(props.children);
     let allLinkElements = document.querySelectorAll(".customLink");
     allLinkElements.forEach(function (item) {
       item.addEventListener("click", function (evt) {
         evt.preventDefault();
-        history.pushState(",", "contact", this.href);
+        history.pushState("", this.href, this.href);
         console.log(this);
 
         let link = this.href;
@@ -30,12 +31,13 @@ export function Router(props) {
       });
     });
   });
-
   return (
     <div className="zing-router">
-      {props.children}
+      <div className="container">
+        {props.children}
 
-      {routerConfig[currPath]}
+        {routerConfig[currPath]}
+      </div>
     </div>
   );
 }
