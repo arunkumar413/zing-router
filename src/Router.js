@@ -18,6 +18,8 @@ export function Router(props) {
     allLinkElements.forEach(function (item) {
       item.addEventListener("click", function (evt) {
         evt.preventDefault();
+        history.pushState(",", "contact", this.href);
+        console.log(this);
 
         let link = this.href;
         let url = new URL(link);
@@ -30,7 +32,7 @@ export function Router(props) {
   });
 
   return (
-    <div>
+    <div className="zing-router">
       {props.children}
 
       {routerConfig[currPath]}
