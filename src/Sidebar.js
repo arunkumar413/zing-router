@@ -16,6 +16,10 @@ export function Sidebar() {
         <a className="customLink" href="/test">
           test
         </a>
+        <br />
+        <a className="customLink" href="/2323242">
+          test numeric
+        </a>
       </div>
     </div>
   );
