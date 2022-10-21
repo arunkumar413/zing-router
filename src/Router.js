@@ -8,13 +8,7 @@ import { NumericTest } from "./NumericPath";
 export function Router(props) {
   const [currComponent, setCurrentComponent] = useState("");
   const [currPath, setCurrPath] = useState("");
-
-  const routerConfig = {
-    "/about": <About />,
-    "/contact": <Contact />,
-    "/test": <Test />,
-    "/:id(\\d+)": <NumericTest />,
-  };
+  const [routerConfig, setRouterConfig] = useState(props.routerConfig);
 
   useEffect(function () {
     let allLinkElements = document.querySelectorAll(".customLink");
@@ -27,13 +21,6 @@ export function Router(props) {
         let url = new URL(link);
         let path = url.pathname;
 
-        // let currComponent = routerConfig[path];
-        setCurrPath(path);
-        let pattern = new URLPattern({ pathname: "/:id(\\d+)" });
-        let res = pattern.test(link);
-        if (res === true) {
-        }
-
         let keys = Object.keys(routerConfig);
         keys.forEach(function (item, index) {
           let pattern = new URLPattern({ pathname: item });
@@ -43,7 +30,6 @@ export function Router(props) {
         });
         console.log(keys);
         console.log(link);
-        console.log(res);
       });
     });
   }, []);
